@@ -1,12 +1,56 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
+import MenuSistema from '../../MenuSistema';
 
 export default function FormCliente() {
+
+    const [nome, setNome] = useState();
+    const [cpf, setCpf] = useState();
+    const [rg, setRg] = useState();
+    const [dataNascimento, setDataNascimento] = useState();
+    const [foneCelular, setFoneCelular] = useState();
+    const [foneFixo, setFoneFixo] = useState();
+    const [qtndEntregas, setQtndEntregas] = useState();
+    const [frete, setFrete] = useState();
+    const [rua, setRua] = useState();
+    const [numero, setNumero] = useState();
+    const [bairro, setBairro] = useState();
+    const [cidade, setCidade] = useState();
+    const [cep, setCep] = useState();
+    function salvar() {
+
+        let EntregadorRequest = {
+            nome: nome,
+            cpf: cpf,
+            rg: rg,
+            dataNascimento: dataNascimento,
+            foneCelular: foneCelular,
+            foneFixo: foneFixo,
+            qtndEntregas: qtndEntregas,
+            frete: frete,
+            rua: rua,
+            numero: numero,
+            bairro: bairro,
+            cidade: cidade,
+            cep: cep
+
+        }
+
+        axios.post("http://localhost:8082/api/entregador", clienteRequest)
+            .then((response) => {
+                console.log('Entregador cadastrado com sucesso.')
+            })
+            .catch((error) => {
+                console.log('Erro ao incluir o um entregador.')
+            })
+    }
 
     return (
 
         <div>
+            <MenuSistema />
 
             <div style={{ marginTop: '3%' }}>
 
@@ -28,6 +72,9 @@ export default function FormCliente() {
                                     label='Nome'
                                     maxLength="100"
                                     width={14}
+                                    value={nome}
+                                    onChange={e => setNome(e.target.value)}
+
                                 />
 
                                 <Form.Input
@@ -38,6 +85,9 @@ export default function FormCliente() {
                                     <InputMask
                                         required
                                         mask="999.999.999-99"
+                                        value={cpf}
+                                        onChange={e => setNome(e.target.value)}
+
                                     />
                                 </Form.Input>
 
@@ -49,6 +99,9 @@ export default function FormCliente() {
                                     <InputMask
                                         required
                                         mask="999.999.999"
+                                        value={rg}
+                                        onChange={e => setNome(e.target.value)}
+
                                     />
 
                                 </Form.Input>
@@ -65,6 +118,9 @@ export default function FormCliente() {
                                         mask="99/99/9999"
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
+                                        value={dataNascimento}
+                                        onChange={e => setNome(e.target.value)}
+
                                     />
                                 </Form.Input>
 
@@ -75,6 +131,9 @@ export default function FormCliente() {
                                     width={4}>
                                     <InputMask
                                         mask="(99) 9999.9999"
+                                        value={foneCelular}
+                                        onChange={e => setNome(e.target.value)}
+
                                     />
                                 </Form.Input>
 
@@ -84,6 +143,9 @@ export default function FormCliente() {
                                     width={4}>
                                     <InputMask
                                         mask="(99) 9999.9999"
+                                        value={foneFixo}
+                                        onChange={e => setNome(e.target.value)}
+
                                     />
                                 </Form.Input>
 
@@ -92,6 +154,9 @@ export default function FormCliente() {
                                     label='QTD Entregas Realizadas'
                                     maxLength="100"
                                     width={4}
+                                    value={qtndEntregas}
+                                    onChange={e => setNome(e.target.value)}
+
                                 />
 
                                 <Form.Input
@@ -99,6 +164,9 @@ export default function FormCliente() {
                                     label='Valor por Frete'
                                     maxLength="100"
                                     width={4}
+                                    value={frete}
+                                    onChange={e => setNome(e.target.value)}
+
                                 />
 
                             </Form.Group>
@@ -109,12 +177,16 @@ export default function FormCliente() {
                                     fluid
                                     label='Rua'
                                     width={11}
+                                    value={rua}
+                                    onChange={e => setNome(e.target.value)}
                                 />
 
                                 <Form.Input
                                     fluid
                                     label='Número'
                                     width={5}
+                                    value={numero}
+                                    onChange={e => setNome(e.target.value)}
                                 />
 
                             </Form.Group>
@@ -125,18 +197,24 @@ export default function FormCliente() {
                                     fluid
                                     label='Bairro'
                                     width={7}
+                                    value={bairro}
+                                    onChange={e => setNome(e.target.value)}
                                 />
 
                                 <Form.Input
                                     fluid
                                     label='Cidade'
                                     width={7}
+                                    value={cidade}
+                                    onChange={e => setNome(e.target.value)}
                                 />
 
                                 <Form.Input
                                     fluid
                                     label='CEP'
                                     width={3}
+                                    value={cep}
+                                    onChange={e => setNome(e.target.value)}
                                 />
 
                             </Form.Group>
@@ -182,6 +260,7 @@ export default function FormCliente() {
                                 labelPosition='left'
                                 color='blue'
                                 floated='right'
+                                onClick={() => salvar()}
                             >
                                 <Icon name='save' />
                                 Salvar
