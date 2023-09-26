@@ -22,7 +22,7 @@ export default function FormCliente() {
             entregaMax: entregaMax
         }
 
-        axios.post("http://localhost:8082/api/produto", ProdutoRequest)
+        axios.post("http://localhost:8080/api/produto", ProdutoRequest)
             .then((response) => {
                 console.log('Produto cadastrado com sucesso.')
             })
@@ -59,7 +59,7 @@ export default function FormCliente() {
                                     maxLength="100"
                                     placeholder="Informe o título do produto"
                                     value={titulo}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setTitulo(e.target.value)}
 
                                 />
 
@@ -69,7 +69,7 @@ export default function FormCliente() {
                                     label='Código do Produto'
                                     placeholder="Informe o código do produto"
                                     value={codProduto}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setCodProduto(e.target.value)}
 
                                 />
 
@@ -84,7 +84,7 @@ export default function FormCliente() {
                                     placeholder="Infome a descrição do produto"
                                     width={16}
                                     value={descricaoProduto}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setDescricaoproduto(e.target.value)}
 
                                 />
                             </Form.Group>

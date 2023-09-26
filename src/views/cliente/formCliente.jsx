@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import InputMask from 'react-input-mask';
+import { Link } from "react-router-dom";
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 
@@ -22,7 +23,7 @@ export default function FormCliente() {
             foneFixo: foneFixo
         }
 
-        axios.post("http://localhost:8082/api/cliente", clienteRequest)
+        axios.post("http://localhost:8080/api/cliente", clienteRequest)
             .then((response) => {
                 console.log('Cliente cadastrado com sucesso.')
             })
@@ -84,7 +85,7 @@ export default function FormCliente() {
                                     <InputMask
                                         mask="(99) 9999.9999"
                                         value={foneCelular}
-                                        onChange={e => setCpf(e.target.value)}
+                                        onChange={e => setFoneCelular(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -95,7 +96,7 @@ export default function FormCliente() {
                                     <InputMask
                                         mask="(99) 9999.9999"
                                         value={foneFixo}
-                                        onChange={e => setCpf(e.target.value)}
+                                        onChange={e => setFoneFixo(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -109,7 +110,7 @@ export default function FormCliente() {
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
                                         value={dataNascimento}
-                                        onChange={e => setCpf(e.target.value)}
+                                        onChange={e => setDataNascimento(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -128,7 +129,9 @@ export default function FormCliente() {
                                 color='orange'
                             >
                                 <Icon name='reply' />
-                                Voltar
+                                <Link to={'/list-cliente'}>Voltar</Link>
+
+                            
                             </Button>
 
                             <Button

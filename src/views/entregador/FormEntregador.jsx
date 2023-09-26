@@ -38,7 +38,7 @@ export default function FormCliente() {
 
         }
 
-        axios.post("http://localhost:8082/api/entregador", clienteRequest)
+        axios.post("http://localhost:8080/api/entregador", clienteRequest)
             .then((response) => {
                 console.log('Entregador cadastrado com sucesso.')
             })
@@ -86,7 +86,7 @@ export default function FormCliente() {
                                         required
                                         mask="999.999.999-99"
                                         value={cpf}
-                                        onChange={e => setNome(e.target.value)}
+                                        onChange={e => setCpf(e.target.value)}
 
                                     />
                                 </Form.Input>
@@ -100,7 +100,7 @@ export default function FormCliente() {
                                         required
                                         mask="999.999.999"
                                         value={rg}
-                                        onChange={e => setNome(e.target.value)}
+                                        onChange={e => setRg(e.target.value)}
 
                                     />
 
@@ -119,7 +119,7 @@ export default function FormCliente() {
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
                                         value={dataNascimento}
-                                        onChange={e => setNome(e.target.value)}
+                                        onChange={e => setDataNascimento(e.target.value)}
 
                                     />
                                 </Form.Input>
@@ -132,7 +132,7 @@ export default function FormCliente() {
                                     <InputMask
                                         mask="(99) 9999.9999"
                                         value={foneCelular}
-                                        onChange={e => setNome(e.target.value)}
+                                        onChange={e => setFoneCelular(e.target.value)}
 
                                     />
                                 </Form.Input>
@@ -144,7 +144,7 @@ export default function FormCliente() {
                                     <InputMask
                                         mask="(99) 9999.9999"
                                         value={foneFixo}
-                                        onChange={e => setNome(e.target.value)}
+                                        onChange={e => setFoneFixo(e.target.value)}
 
                                     />
                                 </Form.Input>
@@ -155,7 +155,7 @@ export default function FormCliente() {
                                     maxLength="100"
                                     width={4}
                                     value={qtndEntregas}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setQtndEntregas(e.target.value)}
 
                                 />
 
@@ -165,7 +165,7 @@ export default function FormCliente() {
                                     maxLength="100"
                                     width={4}
                                     value={frete}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setFrete(e.target.value)}
 
                                 />
 
@@ -178,7 +178,7 @@ export default function FormCliente() {
                                     label='Rua'
                                     width={11}
                                     value={rua}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setRua(e.target.value)}
                                 />
 
                                 <Form.Input
@@ -186,7 +186,7 @@ export default function FormCliente() {
                                     label='Número'
                                     width={5}
                                     value={numero}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setNumero(e.target.value)}
                                 />
 
                             </Form.Group>
@@ -198,7 +198,7 @@ export default function FormCliente() {
                                     label='Bairro'
                                     width={7}
                                     value={bairro}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setBairro(e.target.value)}
                                 />
 
                                 <Form.Input
@@ -206,7 +206,7 @@ export default function FormCliente() {
                                     label='Cidade'
                                     width={7}
                                     value={cidade}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setCidade(e.target.value)}
                                 />
 
                                 <Form.Input
@@ -214,7 +214,7 @@ export default function FormCliente() {
                                     label='CEP'
                                     width={3}
                                     value={cep}
-                                    onChange={e => setNome(e.target.value)}
+                                    onChange={e => setCep(e.target.value)}
                                 />
 
                             </Form.Group>
@@ -250,6 +250,7 @@ export default function FormCliente() {
                                 color='orange'
                             >
                                 <Icon name='reply' />
+                                <Link to={'/list-cliente'}>Voltar</Link>
                                 Voltar
                             </Button>
 
