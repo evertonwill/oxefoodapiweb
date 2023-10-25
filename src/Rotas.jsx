@@ -6,6 +6,8 @@ import ListCliente from './views/cliente/ListCliente';
 import FormEntregador from './views/entregador/FormEntregador';
 import Home from './views/home/Home';
 import FormProduto from './views/produto/FormProduto';
+import FormFornecedor from './views/Fornecedor/FormFornecedor';
+
 
 function Rotas() {
     return (
@@ -16,6 +18,8 @@ function Rotas() {
                 <Route path="form-cliente" element={ <FormCliente/> } />
                 <Route path="form-produto" element={ <FormProduto/> } />
                 <Route path="form-entregador" element={ <FormEntregador/> } />
+                <Route path="form-fornecedor" element={ <FormFornecedor/>}/>
+
             </Routes>
         </>
     )

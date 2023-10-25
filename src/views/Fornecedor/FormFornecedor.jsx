@@ -5,28 +5,28 @@ import { Link, useLocation } from "react-router-dom";
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 
-export default function FormCliente() {
+export default function FormFornecedor() {
     const { state } = useLocation();
-const [idCliente, setIdCliente] = useState();
+    const [idFornecedor, setIdFornecedor] = useState();
     const [nome, setNome] = useState();
-    const [cpf, setCpf] = useState();
-    const [dataNascimento, setDataNascimento] = useState();
-    const [foneCelular, setFoneCelular] = useState();
-    const [foneFixo, setFoneFixo] = useState();
-
+    const [endereco, setendereco] = useState();
+    const [datafundacao, setDatafundacao] = useState();
+    const [valordemercado, setvalordemercado] = useState();
+    const [paginaweb, setpaginaweb] = useState();
+    const [contatovendedor, setcontatovendedor] = useState();
 
     useEffect(() => {
         if (state != null && state.id != null) {
-            axios.get("http://localhost:8080/api/cliente/" + state.id)
-         .then((response) => {
-                           setIdCliente(response.data.id)
-                           setNome(response.data.nome)
-                           setCpf(response.data.cpf)
-                           setDataNascimento( formatarData (response.data.dataNascimento))
-                           setFoneCelular(response.data.foneCelular)
-                           setFoneFixo(response.data.foneFixo)
-            })
-        }
+            axios.get("http://localhost:8080/api/fornecedor/" + state.id)
+                .then((response) => {
+                    setIdFornecedor(response.data.id);
+                    setNome(response.data.nome);
+                    setendereco(response.data.endereco);
+                    setDatafundacao(formatarData(response.data.datafundacao));
+                    setvalordemercado(response.data.valordemercado);
+                    setpaginaweb(response.data.paginaweb);
+                }); setcontatovendedor(response.data.contatovendedor);
+            }
 }, [state])
 
 function formatarData(dataParam) {
@@ -42,31 +42,33 @@ function formatarData(dataParam) {
 
     function salvar() {
 
-        let clienteRequest = {
+        let fornecedorRequest = {
             nome: nome,
-            cpf: cpf,
-            dataNascimento: dataNascimento,
-            foneCelular: foneCelular,
-            foneFixo: foneFixo
+            endereco: endereco,
+            datafundacao: datafundacao,
+            valordemercado: valordemercado,
+            paginaweb: paginaweb,
+            contatovendedor: contatovendedor
         }
         
 
         function salvar() {
 
-            let clienteRequest = {
+            let fornecedorRequest = {
                 nome: nome,
-                cpf: cpf,
-                dataNascimento: dataNascimento,
-                foneCelular: foneCelular,
-                foneFixo: foneFixo
+                endereco: endereco,
+                datafundacao: datafundacao,
+                valordemercado: valordemercado,
+                paginaweb: paginaweb,
+                contatovendedor: contatovendedor
             }
      
             if (idCliente != null) { //Alteração:
-                axios.put("http://localhost:8080/api/cliente/" + idCliente, clienteRequest)
-                .then((response) => { console.log('Cliente alterado com sucesso.') })
+                axios.put("http://localhost:8080/api/fornecedor/" + idFornecedor, clienteRequest)
+                .then((response) => { console.log('fornecedor alterado com sucesso.') })
                 .catch((error) => { console.log('Erro ao alter um cliente.') })
             } else { //Cadastro:
-                axios.post("http://localhost:8080/api/cliente", clienteRequest)
+                axios.post("http://localhost:8080/api/fornecedor", fornecedorRequest)
                 .then((response) => { console.log('Cliente cadastrado com sucesso.') })
                 .catch((error) => { console.log('Erro ao incluir o cliente.') })
             }
@@ -85,11 +87,11 @@ function formatarData(dataParam) {
 
                 <Container textAlign='justified' >
 
-                { idCliente === undefined &&
-    <h2> <span style={{color: 'darkgray'}}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
+                { idFornecedor === undefined &&
+    <h2> <span style={{color: 'darkgray'}}> Fornecedor &nbsp;<Icon name='angle double right' size="small" /> </span> Cadastro</h2>
 }
-{ idCliente != undefined &&
-    <h2> <span style={{color: 'darkgray'}}> Cliente &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
+{ idFornecedor != undefined &&
+    <h2> <span style={{color: 'darkgray'}}> Fornecedor &nbsp;<Icon name='angle double right' size="small" /> </span> Alteração</h2>
 }
 
 
@@ -113,12 +115,12 @@ function formatarData(dataParam) {
                                 <Form.Input
                                     required
                                     fluid
-                                    label='CPF'>
+                                    label='endereço'>
                                     <InputMask
                                         required
                                         mask="999.999.999-99"
-                                        value={cpf}
-                                        onChange={e => setCpf(e.target.value)}
+                                        value={endereco}
+                                        onChange={e => setendereco(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -128,37 +130,48 @@ function formatarData(dataParam) {
 
                                 <Form.Input
                                     fluid
-                                    label='Fone Celular'
+                                    label='data da fundação'
                                     width={6}>
                                     <InputMask
                                         mask="(99) 9999.9999"
-                                        value={foneCelular}
-                                        onChange={e => setFoneCelular(e.target.value)}
+                                        value={datafundacao}
+                                        onChange={e => setDatafundacao(e.target.value)}
                                     />
                                 </Form.Input>
 
                                 <Form.Input
                                     fluid
-                                    label='Fone Fixo'
+                                    label='valor do mercado'
                                     width={6}>
                                     <InputMask
                                         mask="(99) 9999.9999"
-                                        value={foneFixo}
-                                        onChange={e => setFoneFixo(e.target.value)}
+                                        value={valordemercado}
+                                        onChange={e => setvalordemercado(e.target.value)}
                                     />
                                 </Form.Input>
 
                                 <Form.Input
                                     fluid
-                                    label='Data Nascimento'
+                                    label='pagina web'
                                     width={6}
                                 >
                                     <InputMask
                                         mask="99/99/9999"
                                         maskChar={null}
                                         placeholder="Ex: 20/03/1985"
-                                        value={dataNascimento}
-                                        onChange={e => setDataNascimento(e.target.value)}
+                                        value={paginaweb}
+                                        onChange={e => setpaginaweb(e.target.value)}
+                                    />
+                                </Form.Input>
+
+                                <Form.Input
+                                    fluid
+                                    label='contato do vendedor'
+                                    width={6}>
+                                    <InputMask
+                                        mask="(99) 9999.9999"
+                                        value={contatovendedor}
+                                        onChange={e => setcontatovendedor(e.target.value)}
                                     />
                                 </Form.Input>
 
@@ -205,3 +218,32 @@ function formatarData(dataParam) {
     );
 
 }
+
+
+
+
+
+/*export default function FormFornecedor() {
+    const { state } = useLocation();
+    const [idFornecedor, setIdFornecedor] = useState();
+    const [nome, setNome] = useState();
+    const [endereco, setendereco] = useState();
+    const [datafundacao, setDatafundacao] = useState();
+    const [valordemercado, setvalordemercado] = useState();
+    const [paginaweb, setpaginaweb] = useState();
+    const [contatovendedor, setcontatovendedor] = useState();
+*/
+
+
+/*useEffect(() => {
+    if (state != null && state.id != null) {
+        axios.get("http://localhost:8080/api/fornecedor/" + state.id)
+            .then((response) => {
+                setIdFornecedor(response.data.id);
+                setNome(response.data.nome);
+                setendereco(response.data.endereco);
+                setDatafundacao(formatarData(response.data.datafundacao));
+                setvalordemercado(response.data.valordemercado);
+                setpaginaweb(response.data.paginaweb);
+            }); setcontatovendedor(response.data.contatovendedor);
+        }*/
