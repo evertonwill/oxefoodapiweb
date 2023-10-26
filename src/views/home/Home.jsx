@@ -13,7 +13,7 @@ export default function Home() {
                     <Grid columns={2} divided>
                         <Grid.Row>
                             <Grid.Column>
-                                <Image src='/logo-IFPE.png' size='large' />
+                                <Image src='/proto.png' size='large' />
                             </Grid.Column>
                             <Grid.Column>
 

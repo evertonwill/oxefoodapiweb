@@ -13,7 +13,7 @@ function Rotas() {
     return (
         <>
             <Routes>
-                <Route path="/" element={ <Home/> } />
+                <Route path="home" element={ <Home/> } />
                 <Route path="list-cliente" element={ <ListCliente/> } />
                 <Route path="form-cliente" element={ <FormCliente/> } />
                 <Route path="form-produto" element={ <FormProduto/> } />
