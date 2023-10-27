@@ -25,7 +25,8 @@ export default function FormFornecedor() {
                     setDatafundacao(formatarData(response.data.datafundacao));
                     setvalordemercado(response.data.valordemercado);
                     setpaginaweb(response.data.paginaweb);
-                }); setcontatovendedor(response.contatovendedor);
+                    setcontatovendedor(response.data.contatovendedor);
+                });
             }
 }, [state])
 
