@@ -25,7 +25,7 @@ export default function FormFornecedor() {
                     setDatafundacao(formatarData(response.data.datafundacao));
                     setvalordemercado(response.data.valordemercado);
                     setpaginaweb(response.data.paginaweb);
-                }); setcontatovendedor(response.data.contatovendedor);
+                }); setcontatovendedor(response.contatovendedor);
             }
 }, [state])
 
@@ -63,8 +63,8 @@ function formatarData(dataParam) {
                 contatovendedor: contatovendedor
             }
      
-            if (idCliente != null) { //Alteração:
-                axios.put("http://localhost:8080/api/fornecedor/" + idFornecedor, clienteRequest)
+            if (idFornecedor != null) { //Alteração:
+                axios.put("http://localhost:8080/api/fornecedor/" + idFornecedor, fornecedorRequest)
                 .then((response) => { console.log('fornecedor alterado com sucesso.') })
                 .catch((error) => { console.log('Erro ao alter um cliente.') })
             } else { //Cadastro:
@@ -133,7 +133,9 @@ function formatarData(dataParam) {
                                     label='data da fundação'
                                     width={6}>
                                     <InputMask
-                                        mask="(99) 9999.9999"
+                                        mask="00/00/0000"
+                                        maskChar={null}
+                                        placeholder="Ex: 20/03/1985"
                                         value={datafundacao}
                                         onChange={e => setDatafundacao(e.target.value)}
                                     />
@@ -154,14 +156,9 @@ function formatarData(dataParam) {
                                     fluid
                                     label='pagina web'
                                     width={6}
+                                    value={paginaweb}
                                 >
-                                    <InputMask
-                                        mask="99/99/9999"
-                                        maskChar={null}
-                                        placeholder="Ex: 20/03/1985"
-                                        value={paginaweb}
-                                        onChange={e => setpaginaweb(e.target.value)}
-                                    />
+                                    
                                 </Form.Input>
 
                                 <Form.Input

@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask';
 import { Button, Container, Divider, Form, Icon } from 'semantic-ui-react';
 import MenuSistema from '../../MenuSistema';
 
-export default function FormCliente() {
+export default function FormEntregador() {
 
     const [nome, setNome] = useState();
     const [cpf, setCpf] = useState();
